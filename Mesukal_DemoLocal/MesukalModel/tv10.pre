@@ -1,0 +1,13 @@
+pcapFileName	PNAMS_LR_TV10.pcap
+videoNumberOfSlicesPerFrame	N/A
+transportFormat	RTP/UDP/IP
+scanningType	PROGRESSIVE
+videoResolution	QCIF
+videoDestPort	6002
+markerBit	END
+videoFrameRate	30.0
+videoCodec	H264
+videoPLC	N/A
+modelMode	CC
+videoCodecProfile	BASELINE
+videoRTPPayloadType	96
