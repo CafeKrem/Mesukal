@@ -11,7 +11,7 @@ import time
 
 in_video = "../video/bbb_origine.mp4"
 codec ="h264" 
-form = "QVGA"
+form = "HD720"
 plr = "0.5%"
 
 if codec == "h264":
