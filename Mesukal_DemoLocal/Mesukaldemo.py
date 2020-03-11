@@ -88,7 +88,7 @@ if case == 0:
 	#start a server
 	server="vlc {} --sout=#duplicate{{dst=display,dst=rtp{{sdp=rtsp://istic.stream.fr:8080/bbb.sdp}}}} --rtsp-timeout=0 --loop &".format(out_video)
 
-	print server
+	print(server)
 	os.system(server)
 
 	time.sleep(1)
@@ -157,8 +157,9 @@ elif case == 1 :
 elif case == 2 :
 	
 	# start a client
+	print("start youtube streaming")
 	client = "vlc  {} &".format(out_video)
-
+	print(client)
 	os.system(client)
 	time.sleep(10)
 
@@ -167,13 +168,14 @@ elif case == 2 :
 
 	wins = open("windowlist.txt", "r")
 	line = wins.readline()
+	wname = "EMPTY"
 	while line:
 		line = wins.readline()
 		if len(line.split("- Lecteur")) == 2:
 			
 			wname = line.split("- Lecteur")[0].split("N/A")[1]
 
-	print "window name", wname[1:20]
+	print("window name " + wname[1:20])
 
 	windowC = "wmctrl -r {} -e 1,400,50,640,480".format(wname[1:20])
 	os.system(windowC)
