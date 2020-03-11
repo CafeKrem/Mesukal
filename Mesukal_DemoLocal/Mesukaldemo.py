@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os
 import subprocess
@@ -10,7 +10,7 @@ import time
 # 2 High resolution mode : TV(1280x720), TV (1920x1080), Frame rate, 15, 30, 60
 
 in_video = "../video/bbb_origine.mp4"
-codec ="youtube" 
+codec ="h264" 
 form = "QVGA"
 plr = "0.5%"
 
@@ -86,7 +86,7 @@ if case == 0:
 	# mode push RTP using RTSP
 
 	#start a server
-	server="vlc {} --sout=#duplicate{{dst=display,dst=rtp{{sdp=rtsp://istic.stream.fr:8080/bbb.sdp}}}} --rtsp-timeout=0 --loop &".format(out_video)
+	server="vlc {} --sout=#duplicate{{dst=display,dst=rtp{{sdp=rtsp://localhost:8080/bbb.sdp}}}} --rtsp-timeout=0 --loop &".format(out_video)
 
 	print(server)
 	os.system(server)
@@ -101,7 +101,8 @@ if case == 0:
 	time.sleep(3)
 	
 	# start a client
-	client = "vlc --sout-stats-output=./log rtsp://istic.stream.fr:8080/bbb.sdp --rtp-client-port=5004 &"
+	# istic.stream.fr
+	client = "vlc --sout-stats-output=./log rtsp://localhost:8080/bbb.sdp --rtp-client-port=5004 &"
 	os.system(client)
 	
 	time.sleep(1)
