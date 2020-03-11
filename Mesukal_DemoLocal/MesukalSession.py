@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os
 import sys
@@ -170,6 +170,6 @@ if sys.argv[1] == "LR":
 # handle config information of MPEG/TS
  
 elif sys.argv[1] == "HR":
-	print "handle MPEG TS"
+	print("handle MPEG TS")
 	pre.write("videoResolutionClass	HR\n")
 

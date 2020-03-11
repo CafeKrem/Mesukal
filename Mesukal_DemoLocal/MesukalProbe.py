@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os
 import sys
@@ -55,7 +55,7 @@ while vlc == "ON":
 		size = os.path.getsize("sdpdesc.txt")
 
 		if size > 201:
-			print "An RTSP session is detected..."
+			print("An RTSP session is detected...")
 			subprocess.call(["./MesukalSession.py", mode, "sdpdesc.txt"])
 		
 		os.system("rm -f sdpdesc.txt")
@@ -80,12 +80,12 @@ while vlc == "ON":
 	vlc = "OFF"
 	for process in psutil.process_iter():
 		if process.name() == 'vlc':
-			print "vlc is running..."
+			print("vlc is running...")
 			vlc = "ON"
 	
 	if vlc == "ON":
 		# start data collection process
-		print "call quality model ..."	
+		print("call quality model ...")	
 		sample = time.strftime("%H:%M:%S", time.gmtime())	
 		if mode == "LR":
 			# call LR model to calculate MOS
