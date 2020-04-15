@@ -5,14 +5,15 @@ import subprocess
 import time
 import argparse
 
+
 # Transcode video file to suitable format
 
 # Low resolution: QCIF (176x144, 30fps), QVGA (320x240, 30fps), HVGA (480x320, 30fps)
 # 2 High resolution mode : TV(1280x720), TV (1920x1080), Frame rate, 15, 30, 60
 
 parser = argparse.ArgumentParser(description='mesukal option')
-parser.add_argument('-c','--codec', help='select your codec', required=False)
-parser.add_argument('-f','--form', help='select the quality',choices= ["a", "b"], required=False)
+parser.add_argument('-c','--codec', help='select your codec',choices=["h264","mp4v" ], required=False)
+parser.add_argument('-f','--form', help='select the quality',choices= ["HD720", "HVGA" , "QGVA" , "QCIF","HD1080"], required=False)
 parser.add_argument('-plr', help="use to simulate interference" , required=False)
 parser.add_argument('-vi' ,'--videoInput' , help= 'insert the path of your video' , required=False)
 args = parser.parse_args()
@@ -25,7 +26,7 @@ print("codec " + codec)
 print("form " + form)
 print("plr " + plr)
 print("in_video " + in_video )
-exit()
+
 if codec == "h264":
 	profile = "baseline"
 	case = 0
