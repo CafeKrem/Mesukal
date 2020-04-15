@@ -1,13 +1,1 @@
-videoResolutionClass	LR
-modelMode	CC
-markerBit	END
-scanningType	PROGRESSIVE
-videoRTPPayloadType	96
-transportFormat		RTP/AVP
-videoCodec	H264
-videoClockRate	90000
-videoPacketizationMode	1
-videoCodecProfile	Baseline
-videoResolution	QVGA
-videoFrameRate	30
-videoDestPort		5004
+videoResolutionClass	HR

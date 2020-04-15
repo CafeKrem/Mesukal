@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/python
 
 import os
 import sys
@@ -55,7 +55,7 @@ while vlc == "ON":
 		size = os.path.getsize("sdpdesc.txt")
 
 		if size > 201:
-			print("An RTSP session is detected...")
+			print "An RTSP session is detected..."
 			subprocess.call(["./MesukalSession.py", mode, "sdpdesc.txt"])
 		
 		os.system("rm -f sdpdesc.txt")
@@ -80,20 +80,27 @@ while vlc == "ON":
 	vlc = "OFF"
 	for process in psutil.process_iter():
 		if process.name() == 'vlc':
-			print("vlc is running...")
+			print "vlc is running..."
 			vlc = "ON"
 	
 	if vlc == "ON":
 		# start data collection process
-		print("call quality model ...")	
+		print "call quality model ..."	
 		sample = time.strftime("%H:%M:%S", time.gmtime())	
 		if mode == "LR":
 			# call LR model to calculate MOS
-			subprocess.call(["./MesukalModel/videoSimpleModel.py", sample, "rtp.pcap", "config.pre", "mos_file.csv"])		
+			subprocess.call(["./MesukalModel/video_Model_P12011.py", sample, "rtp.pcap", "config.pre", "mos_file.csv"])		
 
 		elif mode =="HR":
 			# call HR model to calculate MOS
-			subprocess.call(["./MesukalModel/videoSimpleModel.py", sample, "rtp.pcap", "config.pre", "mos_file.csv"])	
+			subprocess.call(["./MesukalModel/video_Model_HernA.py", sample, "rtp.pcap", "config.pre", "mos_file.csv"])
+
+			# call HR model to calculate MOS
+			#subprocess.call(["./MesukalModel/video_Model_HernB.py", sample, "rtp.pcap", "config.pre", "mos_file.csv"])
+
+			# call HR model to calculate MOS
+			#subprocess.call(["./MesukalModel/video_Model_P12012.py", sample, "rtp.pcap", "config.pre", "mos_file.csv"])
+			
 		
 		if start == 0:		
 			#start graphing process csv file and refresh parameter

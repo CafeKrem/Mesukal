@@ -2,8 +2,6 @@
 sudo apt update
 sudo apt upgrade
 
-
-
 sudo apt-get install tshark
 sudo apt-get install vlc
 sudo apt-get install wmctrl
@@ -17,6 +15,8 @@ pip3 install matplotlib
 pip3 install psutil
 pip3 install tkinter
 pip3 install --pre scapy
+pip3 install argparse
+ 
 
 # update a youtube.luac
 cd /usr/lib/x86_64-linux-gnu/vlc/lua/playlist/

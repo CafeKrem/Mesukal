@@ -3,17 +3,29 @@
 import os
 import subprocess
 import time
+import argparse
 
 # Transcode video file to suitable format
 
 # Low resolution: QCIF (176x144, 30fps), QVGA (320x240, 30fps), HVGA (480x320, 30fps)
 # 2 High resolution mode : TV(1280x720), TV (1920x1080), Frame rate, 15, 30, 60
 
-in_video = "../video/bbb_origine.mp4"
-codec ="h264" 
-form = "HD720"
-plr = "0.5%"
+parser = argparse.ArgumentParser(description='mesukal option')
+parser.add_argument('-c','--codec', help='select your codec', required=False)
+parser.add_argument('-f','--form', help='select the quality',choices= ["a", "b"], required=False)
+parser.add_argument('-plr', help="use to simulate interference" , required=False)
+parser.add_argument('-vi' ,'--videoInput' , help= 'insert the path of your video' , required=False)
+args = parser.parse_args()
 
+in_video = (lambda vPath: "../video/bbb_origine.mp4" if vPath == None  else vPath)(args.videoInput)
+codec = (lambda codec: "h264" if codec == None  else codec)(args.codec) 
+form = (lambda form: "HD720" if form == None  else form)(args.form)
+plr = (lambda plr: "0.5%" if plr == None  else plr+"%")(args.plr)
+print("codec " + codec)
+print("form " + form)
+print("plr " + plr)
+print("in_video " + in_video )
+exit()
 if codec == "h264":
 	profile = "baseline"
 	case = 0
