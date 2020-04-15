@@ -1,19 +1,31 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os
 import subprocess
 import time
+import argparse
 
 # Transcode video file to suitable format
 
 # Low resolution: QCIF (176x144, 30fps), QVGA (320x240, 30fps), HVGA (480x320, 30fps)
 # 2 High resolution mode : TV(1280x720), TV (1920x1080), Frame rate, 15, 30, 60
 
-in_video = "../video/bbb_origine.mp4"
-codec ="youtube" 
-form = "QVGA"
-plr = "0.5%"
+parser = argparse.ArgumentParser(description='mesukal option')
+parser.add_argument('-c','--codec', help='select your codec', required=False)
+parser.add_argument('-f','--form', help='select the quality',choices= ["a", "b"], required=False)
+parser.add_argument('-plr', help="use to simulate interference" , required=False)
+parser.add_argument('-vi' ,'--videoInput' , help= 'insert the path of your video' , required=False)
+args = parser.parse_args()
 
+in_video = (lambda vPath: "../video/bbb_origine.mp4" if vPath == None  else vPath)(args.videoInput)
+codec = (lambda codec: "h264" if codec == None  else codec)(args.codec) 
+form = (lambda form: "HD720" if form == None  else form)(args.form)
+plr = (lambda plr: "0.5%" if plr == None  else plr+"%")(args.plr)
+print("codec " + codec)
+print("form " + form)
+print("plr " + plr)
+print("in_video " + in_video )
+exit()
 if codec == "h264":
 	profile = "baseline"
 	case = 0
@@ -86,9 +98,9 @@ if case == 0:
 	# mode push RTP using RTSP
 
 	#start a server
-	server="vlc {} --sout=#duplicate{{dst=display,dst=rtp{{sdp=rtsp://istic.stream.fr:8080/bbb.sdp}}}} --rtsp-timeout=0 --loop &".format(out_video)
+	server="vlc {} --sout=#duplicate{{dst=display,dst=rtp{{sdp=rtsp://localhost:8080/bbb.sdp}}}} --rtsp-timeout=0 --loop &".format(out_video)
 
-	print server
+	print(server)
 	os.system(server)
 
 	time.sleep(1)
@@ -101,7 +113,8 @@ if case == 0:
 	time.sleep(3)
 	
 	# start a client
-	client = "vlc --sout-stats-output=./log rtsp://istic.stream.fr:8080/bbb.sdp --rtp-client-port=5004 &"
+	# istic.stream.fr
+	client = "vlc --sout-stats-output=./log rtsp://localhost:8080/bbb.sdp --rtp-client-port=5004 &"
 	os.system(client)
 	
 	time.sleep(1)
@@ -157,8 +170,9 @@ elif case == 1 :
 elif case == 2 :
 	
 	# start a client
+	print("start youtube streaming")
 	client = "vlc  {} &".format(out_video)
-
+	print(client)
 	os.system(client)
 	time.sleep(10)
 
@@ -167,13 +181,14 @@ elif case == 2 :
 
 	wins = open("windowlist.txt", "r")
 	line = wins.readline()
+	wname = "EMPTY"
 	while line:
 		line = wins.readline()
 		if len(line.split("- Lecteur")) == 2:
 			
 			wname = line.split("- Lecteur")[0].split("N/A")[1]
 
-	print "window name", wname[1:20]
+	print("window name " + wname[1:20])
 
 	windowC = "wmctrl -r {} -e 1,400,50,640,480".format(wname[1:20])
 	os.system(windowC)
