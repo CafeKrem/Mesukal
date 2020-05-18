@@ -22,10 +22,10 @@ in_video = (lambda vPath: "../video/bbb_origine.mp4" if vPath == None  else vPat
 codec = (lambda codec: "h264" if codec == None  else codec)(args.codec) 
 form = (lambda form: "HD720" if form == None  else form)(args.form)
 plr = (lambda plr: "0.5%" if plr == None  else plr+"%")(args.plr)
-print("codec " + codec)
-print("form " + form)
-print("plr " + plr)
-print("in_video " + in_video )
+# print("codec " + codec)
+# print("form " + form)
+# print("plr " + plr)
+# print("in_video " + in_video )
 
 if codec == "h264":
 	profile = "baseline"

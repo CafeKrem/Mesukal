@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import os
 import sys
@@ -415,7 +415,7 @@ elif sys.argv[1] == "HR":
 			elif prop[1] == ' sps->vui.time_scale':
 				time_scale = int(prop[2])
 			elif prop[1].find('frame_mbs_only') > 0:
-				print "scan: "				
+				#print "scan: "				
 				frame_mbs_only_flag = int(prop[2])
 				if frame_mbs_only_flag == 1:
 					pre.write("scanningType	Progressive\n")
