@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 
 import math
 import sys
@@ -135,12 +135,12 @@ if(ts[nb-1] > ts[0]):
 else:
 	v_mt = (ts[nb-1] + 4294967296 - ts[0] + v_tsm)/v_cr
 
-print (v_tsm, "clock rate:", v_cr, "\ntvf:", v_nts, "\nv_mt: ", v_mt)
+print(v_tsm, "clock rate:", v_cr, "\ntvf:", v_nts, "\nv_mt: ", v_mt)
 
 # ordered sequence number
 for i in range(1, len(sn)):
 	if sn[i] < sn[i-1]:
-		print ("Out-Of-Order :", i, sn[i])
+		print("Out-Of-Order :", i, sn[i])
 
 
 tfv = 1
@@ -293,7 +293,7 @@ for i in range(1, tfv+1):
 
 ALR = 100.0 * ALR/tfv
 
-print "average loss rate:", ALR
+print("average loss rate:", ALR)
 # Test simple model (to do with number of lost frames instead)
 SMOS = 4.9442 - 0.1642 * ALR
 
