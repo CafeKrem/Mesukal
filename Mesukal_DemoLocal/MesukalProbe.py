@@ -89,11 +89,11 @@ while vlc == "ON":
 		sample = time.strftime("%H:%M:%S", time.gmtime())	
 		if mode == "LR":
 			# call LR model to calculate MOS
-			subprocess.call(["./MesukalModel/simple_type_video.py", sample, "rtp.pcap", "config.pre", "mos_file.csv"])		
+			subprocess.call(["./MesukalModel/avmodel_p1201.py", sample, "rtp.pcap", "config.pre", "mos_file.csv"])		
 
 		elif mode =="HR":
 			# call HR model to calculate MOS
-			subprocess.call(["./MesukalModel/video_Model_HernA.py", sample, "rtp.pcap", "config.pre", "mos_file.csv"])
+			subprocess.call(["./MesukalModel/avmodel_p1201.py", sample, "rtp.pcap", "config.pre", "mos_file.csv"])
 
 			# call HR model to calculate MOS
 			#subprocess.call(["./MesukalModel/video_Model_HernB.py", sample, "rtp.pcap", "config.pre", "mos_file.csv"])
