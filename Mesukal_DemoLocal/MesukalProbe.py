@@ -33,7 +33,7 @@ while vlc == "ON":
 	calltshark = ['tshark', '-i', 'lo', '-f', 'udp dst port 5004 or tcp port 8080', '-F', 'libpcap', '-w', 'raw.pcap']
 	tsharkProc = subprocess.Popen(calltshark)
 	
-	time.sleep(10)
+	time.sleep(4)
 	tsharkProc.terminate()
 
 	probe = "tshark -n -r {} -Y \"udp.dstport==5004\" -F libpcap -w rtp.pcap".format("raw.pcap")

@@ -29,10 +29,18 @@ in_video = (lambda vPath: "../video/bbb_origine.mp4" if vPath == None  else vPat
 codec = (lambda codec: "h264" if codec == None  else codec)(args.codec) 
 form = (lambda form: "HD720" if form == None  else form)(args.form)
 plr = (lambda plr: "0.5%" if plr == None  else plr+"%")(args.plr)
-# print("codec " + codec)
-# print("form " + form)
-# print("plr " + plr)
-# print("in_video " + in_video )
+
+# add packet loss
+if(plr == "0%"):
+	# do nothing
+	1 +2  
+else:
+
+	loss = "sudo tc qdisc del dev lo root"
+	os.system(loss)
+	loss = "sudo tc qdisc add dev lo root netem loss {}".format(plr)
+	os.system(loss)
+
 
 if codec == "h264":
 	profile = "baseline"
@@ -129,18 +137,7 @@ if case == 0:
 	windowC = "wmctrl -r bbb.sdp - Lecteur multimedia -e 1,800,600,480,320"
 	os.system(windowC)
 
-	time.sleep(5)
-	# add packet loss
-	if(plr == "0%"):
-		# do nothing
-		1 +2  
-	else:
-		loss = "sudo tc qdisc del dev lo root"
-		os.system(loss)
-
-		loss = "sudo tc qdisc add dev lo root netem loss {}".format(plr)
-		os.system(loss)
-
+	
 
 # Test for HR - High Resolution, HD720(1280x720), HD1080(1920x1080), Frame rate 30
 # need to use MPEG TS over RTP for that case, 2 codec may be used H.264
@@ -170,17 +167,6 @@ elif case == 1 :
 	windowC = "wmctrl -r rtp://127.0.0.1:5004 - Lecteur multimedia VLC -e 1,800,600,640,480"
 	os.system(windowC)
 
-	time.sleep(5)
-	# add packet loss
-	if(plr == "0%"):
-		# do nothing 
-		1 + 1
-	else:
-		loss = "sudo tc qdisc del dev lo root"
-		os.system(loss)
-
-		loss = "sudo tc qdisc add dev lo root netem loss {}".format(plr)
-		os.system(loss)
 
 # HTTP YouTube stream
 elif case == 2 :
@@ -211,19 +197,5 @@ elif case == 2 :
 
 	os.system("rm -r windowlist.txt")
 
-	time.sleep(5)
-	# add packet loss
-	if(plr == "0%"):
-		# do nothing 
-		1 +1 
-	else:
-
-		loss = "sudo tc qdisc del dev lo root"
-		#os.system(loss)
-
-		loss = "sudo tc qdisc add dev lo root netem loss {}".format(plr)
-		#os.system(loss)
-
-	
 
 
