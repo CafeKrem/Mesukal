@@ -124,11 +124,15 @@ if case == 0:
 
 	time.sleep(5)
 	# add packet loss
-	loss = "sudo tc qdisc del dev lo root"
-	os.system(loss)
+	if(plr == "0%"):
+		# do nothing
+		1 +2  
+	else:
+		loss = "sudo tc qdisc del dev lo root"
+		os.system(loss)
 
-	loss = "sudo tc qdisc add dev lo root netem loss {}".format(plr)
-	os.system(loss)
+		loss = "sudo tc qdisc add dev lo root netem loss {}".format(plr)
+		os.system(loss)
 
 
 # Test for HR - High Resolution, HD720(1280x720), HD1080(1920x1080), Frame rate 30
@@ -161,11 +165,15 @@ elif case == 1 :
 
 	time.sleep(5)
 	# add packet loss
-	loss = "sudo tc qdisc del dev lo root"
-	os.system(loss)
+	if(plr == "0%"):
+		# do nothing 
+		1 + 1
+	else:
+		loss = "sudo tc qdisc del dev lo root"
+		os.system(loss)
 
-	loss = "sudo tc qdisc add dev lo root netem loss {}".format(plr)
-	os.system(loss)
+		loss = "sudo tc qdisc add dev lo root netem loss {}".format(plr)
+		os.system(loss)
 
 # HTTP YouTube stream
 elif case == 2 :
@@ -198,11 +206,16 @@ elif case == 2 :
 
 	time.sleep(5)
 	# add packet loss
-	loss = "sudo tc qdisc del dev lo root"
-	#os.system(loss)
+	if(plr == "0%"):
+		# do nothing 
+		1 +1 
+	else:
 
-	loss = "sudo tc qdisc add dev lo root netem loss {}".format(plr)
-	#os.system(loss)
+		loss = "sudo tc qdisc del dev lo root"
+		#os.system(loss)
+
+		loss = "sudo tc qdisc add dev lo root netem loss {}".format(plr)
+		#os.system(loss)
 
 	
 
