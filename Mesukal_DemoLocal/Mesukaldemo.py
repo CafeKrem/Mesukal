@@ -4,8 +4,15 @@ import os
 import subprocess
 import time
 import argparse
+import signal
+import sys
 
+def signal_handler(sig, frame):
+		os.system("killall vlc")
+		os.system("sudo tc qdisc del dev lo root")
+		sys.exit(0)
 
+signal.signal(signal.SIGINT, signal_handler)
 # Transcode video file to suitable format
 
 # Low resolution: QCIF (176x144, 30fps), QVGA (320x240, 30fps), HVGA (480x320, 30fps)
