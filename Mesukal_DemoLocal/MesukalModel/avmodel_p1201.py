@@ -143,18 +143,13 @@ a_nts = 1
 with  open(pcap_name, "rb") as pcap_file:
 	
 	header = pcap_file.read(24)
-	print(header)
 	while True:
 		pkt = pcap_file.read(16)
 		if not pkt:break
 		b1 = pkt[9]
 		b2 = pkt[8]
-		print(pkt[9])
-		print(pkt[8])
 		lon = (b1 << 8) | b2
-		print(lon)
 		data = pcap_file.read(lon)
-		print("#####################")
 		# longueur du datagramme UDP
 		b1 = data[udpoffset + 4]
 		b2 = data[udpoffset + 5]
