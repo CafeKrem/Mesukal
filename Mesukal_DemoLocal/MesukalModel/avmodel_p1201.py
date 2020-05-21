@@ -13,6 +13,13 @@ csv_name = sys.argv[4]
 
 pre_file = open(pre_name, "r")
 
+v1 = 1.6184
+v2 = 0.4611
+v3 = 280.0
+v4 = 11.0
+v5 = 1.69
+v6 = 0.02
+
 class BasicVideoParam:
 	def __init__(self):
 		self.videoCodec = ""
