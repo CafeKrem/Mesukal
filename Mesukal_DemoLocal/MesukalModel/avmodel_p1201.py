@@ -17,7 +17,7 @@ class BasicVideoParam:
 	def __init__(self):
 		self.videoCodec = ""
 		self.videoResolution = ""
-		self.videoFrameRate = 0.0
+		self.videoFrameRate = 5.0
 		self.videoPLC = ""
 		self.videoRTPPayloadType=0
 		self.videoDestPort=0

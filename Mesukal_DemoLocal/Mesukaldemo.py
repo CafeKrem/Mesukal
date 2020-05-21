@@ -8,7 +8,7 @@ import signal
 import sys
 
 def signal_handler(sig, frame):
-		os.system("killall vlc")
+		os.system("sudo killall -9 vlc")
 		os.system("sudo tc qdisc del dev lo root")
 		sys.exit(0)
 
